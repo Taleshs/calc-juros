@@ -40,19 +40,22 @@ const App = () => {
         <h1 className="display-3 text-center">Calculadora de Juros Compostos</h1>
       </Row>
       <Row className="mt-5">
-        <Col className="mb-5 col-md-6">
+        <Col className="mb-5 col-sm-6">
           <CalculatorForm onCalculate={handleCalculate} />
         </Col>
-        <Col className="mb-5 col-md-6">
-          {result && <CalculatorResult result={result} />}
-        </Col>
+        {result &&
+          <Col className="mb-5 col-md-6">
+            {<CalculatorResult result={result} />}
+          </Col>
+        }
       </Row>
-      <Row>
-        <Col className="mb-5 col-12">
-          {result && <PartialDataList result={result} />}
-        </Col>
-      </Row>
-
+      {result &&
+        <Row>
+          <Col className="mb-5 col-12">
+            <PartialDataList result={result} />
+          </Col>
+        </Row>
+      }
     </Container>
   );
 };
