@@ -46,10 +46,10 @@ const PartialDataList = ({ result }) => {
   }
 
   return (
-    <div>
-      <h2>Extrato Mês a Mês</h2>
-
-      <Table striped bordered hover variant="dark">
+    <div className="border mb-5 p-4 rounded-2">
+      <h3>Consolidado Mês a Mês</h3>
+      <div class="table-responsive-lg">
+      <Table striped bordered hover>
         <thead>
           <tr>
             <th>Mês</th>
@@ -71,6 +71,7 @@ const PartialDataList = ({ result }) => {
           ))}
         </tbody>
       </Table>
+      </div>
     </div>
   );
 };

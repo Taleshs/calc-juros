@@ -7,6 +7,7 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 
+
 const App = () => {
   // Estado para armazenar o resultado dos cálculos
   const [result, setResult] = useState(null);
@@ -34,19 +35,24 @@ const App = () => {
   };
 
   return (
-    <Container>
+    <Container className="container-sm">
       <Row className="mt-5">
-        <Col>
-          <h1 className="text-center">Calculadora de Juros Compostos</h1>
-        </Col>
+        <h1 className="display-3 text-center">Calculadora de Juros Compostos</h1>
       </Row>
       <Row className="mt-5">
-        <Col>
+        <Col className="mb-5 col-6">
           <CalculatorForm onCalculate={handleCalculate} />
+        </Col>
+        <Col className="mb-5 col-6">
           {result && <CalculatorResult result={result} />}
+        </Col>
+      </Row>
+      <Row>
+        <Col className="mb-5 col-12">
           {result && <PartialDataList result={result} />}
         </Col>
       </Row>
+
     </Container>
   );
 };
