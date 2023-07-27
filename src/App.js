@@ -2,6 +2,10 @@ import React, { useState } from 'react';
 import CalculatorForm from './components/CalculatorForm';
 import CalculatorResult from './components/CalculatorResult';
 import PartialDataList from './components/PartialDataList';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
 
 const App = () => {
   // Estado para armazenar o resultado dos cálculos
@@ -30,12 +34,20 @@ const App = () => {
   };
 
   return (
-    <div>
-      <h1>Calculadora de Juros Compostos</h1>
-      <CalculatorForm onCalculate={handleCalculate} />
-      {result && <CalculatorResult result={result} />}
-      {result && <PartialDataList result={result} />}
-    </div>
+    <Container>
+      <Row className="mt-5">
+        <Col>
+          <h1 className="text-center">Calculadora de Juros Compostos</h1>
+        </Col>
+      </Row>
+      <Row className="mt-5">
+        <Col>
+          <CalculatorForm onCalculate={handleCalculate} />
+          {result && <CalculatorResult result={result} />}
+          {result && <PartialDataList result={result} />}
+        </Col>
+      </Row>
+    </Container>
   );
 };
 

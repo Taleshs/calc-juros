@@ -1,5 +1,6 @@
 import React from 'react';
 import { formatCurrency } from './../utils/utils';
+import Table from 'react-bootstrap/Table';
 
 const PartialDataList = ({ result }) => {
   // Array para armazenar os dados do extrato mês a mês
@@ -48,7 +49,7 @@ const PartialDataList = ({ result }) => {
     <div>
       <h2>Extrato Mês a Mês</h2>
 
-      <table>
+      <Table striped bordered hover variant="dark">
         <thead>
           <tr>
             <th>Mês</th>
@@ -69,7 +70,7 @@ const PartialDataList = ({ result }) => {
             </tr>
           ))}
         </tbody>
-      </table>
+      </Table>
     </div>
   );
 };
