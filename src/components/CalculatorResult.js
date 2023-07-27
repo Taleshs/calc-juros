@@ -1,17 +1,14 @@
 import React from 'react';
+import { formatCurrency } from './../utils/utils';
 
 const CalculatorResult = ({ result }) => {
-  const formatCurrency = (value) => {
-    return new Intl.NumberFormat('pt-BR', {
-      style: 'currency',
-      currency: 'BRL',
-      minimumFractionDigits: 2,
-    }).format(value);
-  };
+  // Cálculo do valor total dos juros
+  const totalInterest = result.total - result.initialAmount - result.monthlyDeposit * result.months;
 
   return (
     <div>
       <h2>Resultados</h2>
+
       <table>
         <thead>
           <tr>
@@ -25,7 +22,7 @@ const CalculatorResult = ({ result }) => {
           <tr>
             <td>{formatCurrency(result.initialAmount)}</td>
             <td>{formatCurrency(result.monthlyDeposit)}</td>
-            <td>{formatCurrency(result.total - result.initialAmount - result.monthlyDeposit * result.months)}</td>
+            <td>{formatCurrency(totalInterest)}</td>
             <td>{formatCurrency(result.total)}</td>
           </tr>
         </tbody>

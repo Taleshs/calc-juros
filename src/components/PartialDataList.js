@@ -1,21 +1,22 @@
 import React from 'react';
+import { formatCurrency } from './../utils/utils';
 
 const PartialDataList = ({ result }) => {
-  const formatCurrency = (value) => {
-    return new Intl.NumberFormat('pt-BR', {
-      style: 'currency',
-      currency: 'BRL',
-      minimumFractionDigits: 2,
-    }).format(value);
-  };
-
+  // Array para armazenar os dados do extrato mês a mês
   const data = [];
 
+  // Verificando se há resultado para calcular o extrato
   if (result) {
+    // Convertendo a taxa de juros para decimal
     const rate = result.interestRate / 100;
+
+    // Calculando a taxa de juros mensal
     const monthlyRate = Math.pow(1 + rate, 1 / 12) - 1;
+
+    // Inicializando o montante com o valor do aporte inicial
     let montante = result.initialAmount;
 
+    // Adicionando o mês ZERO com os valores do aporte inicial
     data.push({
       month: 0,
       deposits: formatCurrency(result.initialAmount),
@@ -24,10 +25,15 @@ const PartialDataList = ({ result }) => {
       accumulated: formatCurrency(result.initialAmount),
     });
 
+    // Loop para calcular os valores mês a mês
     for (let i = 1; i <= result.months; i++) {
+      // Calculando os juros do mês
       const tempJuros = parseInt(montante * monthlyRate * 100) / 100;
+
+      // Atualizando o montante com o valor acumulado no mês
       montante = Math.floor((montante + parseInt((tempJuros + result.monthlyDeposit) * 100) / 100) * 100) / 100;
 
+      // Adicionando os dados do mês ao array data
       data.push({
         month: i,
         deposits: formatCurrency(result.monthlyDeposit),
@@ -41,6 +47,7 @@ const PartialDataList = ({ result }) => {
   return (
     <div>
       <h2>Extrato Mês a Mês</h2>
+
       <table>
         <thead>
           <tr>
